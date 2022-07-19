@@ -1,11 +1,27 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import streamlit as st
 
-tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
-model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
+# tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
+# model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
+tokenizer = AutoTokenizer.from_pretrained("./model/")
+model = AutoModelForSeq2SeqLM.from_pretrained("./model/")
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def generate_summary(text, min_length = 80, max_length=150):
+    """
+    Generate a summarized version of given text.
+    
+    Parameters
+    ----------
+    min_length: int
+        The minimum word count of the summary
+    max_length: int
+        The maximum word count of the summary  
+
+    Returns
+    -------
+    str
+    """
     inputs = tokenizer.encode("summarize: " + text,
             return_tensors='pt',
             max_length=512,
@@ -15,8 +31,19 @@ def generate_summary(text, min_length = 80, max_length=150):
     summary = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
     return summary
 
-@st.cache
+@st.cache(suppress_st_warning=True)
 def get_word_count(text):
+    """
+    Get word count of a string
+    
+    Parameters
+    ----------
+    text: str
+
+    Returns
+    -------
+    int
+    """
     return len(text.split())
 
 ################################## UI ##############################################
