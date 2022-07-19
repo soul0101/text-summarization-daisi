@@ -7,3 +7,6 @@ This feature extracts sentences that collectively represent the most important o
 1) Distill critical information from lengthy documents, reports, and other text forms
 2) Highlight key sentences in documents
 3) Generate news feed content
+
+## Reference:
+Summarization model used: https://huggingface.co/sshleifer/distilbart-cnn-12-6
