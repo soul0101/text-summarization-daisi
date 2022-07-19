@@ -1,10 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import streamlit as st
 
-# tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
-# model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
-tokenizer = AutoTokenizer.from_pretrained("./model/")
-model = AutoModelForSeq2SeqLM.from_pretrained("./model/")
+tokenizer = AutoTokenizer.from_pretrained("sshleifer/distilbart-cnn-12-6")
+model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distilbart-cnn-12-6")
 
 @st.cache(suppress_st_warning=True)
 def generate_summary(text, min_length = 80, max_length=150):
